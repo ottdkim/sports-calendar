@@ -1,0 +1,19 @@
+{
+  "home_timezone": "America/Toronto",
+
+  "f1": {
+    "seasons": [2026, 2027],
+    "driver_id": "piastri",
+    "driver_name": "Oscar Piastri",
+    "constructor_id": "mclaren",
+    "constructor_name": "McLaren"
+  },
+
+  "nhl": {
+    "team": "OTT",
+    "team_name": "Ottawa Senators",
+    "season": "20262027",
+    "division": "Atlantic",
+    "include_preseason": false
+  }
+}

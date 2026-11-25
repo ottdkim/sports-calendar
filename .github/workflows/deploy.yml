@@ -1,0 +1,62 @@
+# Fetch fresh F1 + NHL data and publish the site to an Azure Storage static website.
+#
+# Runs automatically:
+#   - when you push changes to the main branch
+#   - twice a day (catches last night's NHL results and any schedule changes)
+#   - every 3 hours Friday to Monday (UTC), so F1 weekend results show up quickly
+# You can also run it by hand: GitHub repo > Actions > "Build data and deploy" > Run workflow.
+#
+# Needs one repository secret:  AZURE_STORAGE_CONNECTION_STRING  (storage account > Access keys)
+# Optional repository variable: SITE_URL  (the static website's primary endpoint, no trailing slash) -
+#   lets a run keep the currently published data for a league whose API is down, instead of dropping it.
+
+name: Build data and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4,10 * * *"      # 04:17 and 10:17 UTC every day
+    - cron: "47 */3 * * 5,6,0,1" # every 3 hours, Fri-Mon (UTC)
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Start from the currently published data (fallback if an API is down)
+        if: ${{ vars.SITE_URL != '' }}
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          mkdir -p site/data
+          curl -fsS "$SITE_URL/data/events.json" -o site/data/events.json || rm -f site/data/events.json
+          curl -fsS "$SITE_URL/data/standings.json" -o site/data/standings.json || rm -f site/data/standings.json
+
+      - name: Fetch schedules, results and standings
+        run: python3 scripts/build_data.py
+
+      - name: Upload the site to Azure Storage ($web container)
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+        run: |
+          if [ -z "$AZURE_STORAGE_CONNECTION_STRING" ]; then
+            echo "::error::Secret AZURE_STORAGE_CONNECTION_STRING is not set (repo Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+          # no-cache: browsers re-check files on each visit, so updates show up right away
+          az storage blob upload-batch \
+            --destination '$web' \
+            --source site \
+            --overwrite \
+            --content-cache-control "no-cache" \
+            --only-show-errors \
+            --output none
+          echo "Uploaded. Site: ${{ vars.SITE_URL }}"

@@ -1,0 +1,30 @@
+{
+  "_note": "Placeholder 2027 calendar from the official announcement (Sep 2026). Session times are not out yet, so only the race day is listed with a TBD time. Once Jolpica publishes the 2027 schedule, the build script uses that instead and ignores this file. Bahrain and Saudi Arabia are marked as subject to change; Turkiye is subject to FIA homologation.",
+  "season": 2027,
+  "races": [
+    {"round": 1,  "name": "Bahrain Grand Prix",       "circuit_id": "bahrain",       "locality": "Sakhir",           "country": "Bahrain",      "race_date": "2027-03-14", "sprint": true},
+    {"round": 2,  "name": "Saudi Arabian Grand Prix", "circuit_id": "jeddah",        "locality": "Jeddah",           "country": "Saudi Arabia", "race_date": "2027-03-21", "sprint": false},
+    {"round": 3,  "name": "Australian Grand Prix",    "circuit_id": "albert_park",   "locality": "Melbourne",        "country": "Australia",    "race_date": "2027-04-04", "sprint": true},
+    {"round": 4,  "name": "Japanese Grand Prix",      "circuit_id": "suzuka",        "locality": "Suzuka",           "country": "Japan",        "race_date": "2027-04-11", "sprint": true},
+    {"round": 5,  "name": "Chinese Grand Prix",       "circuit_id": "shanghai",      "locality": "Shanghai",         "country": "China",        "race_date": "2027-04-18", "sprint": false},
+    {"round": 6,  "name": "Miami Grand Prix",         "circuit_id": "miami",         "locality": "Miami",            "country": "USA",          "race_date": "2027-05-02", "sprint": false},
+    {"round": 7,  "name": "Canadian Grand Prix",      "circuit_id": "villeneuve",    "locality": "Montreal",         "country": "Canada",       "race_date": "2027-05-23", "sprint": true},
+    {"round": 8,  "name": "Monaco Grand Prix",        "circuit_id": "monaco",        "locality": "Monte Carlo",      "country": "Monaco",       "race_date": "2027-06-06", "sprint": true},
+    {"round": 9,  "name": "Portuguese Grand Prix",    "circuit_id": "portimao",      "locality": "Portimão",         "country": "Portugal",     "race_date": "2027-06-20", "sprint": false},
+    {"round": 10, "name": "British Grand Prix",       "circuit_id": "silverstone",   "locality": "Silverstone",      "country": "UK",           "race_date": "2027-07-04", "sprint": true},
+    {"round": 11, "name": "Austrian Grand Prix",      "circuit_id": "red_bull_ring", "locality": "Spielberg",        "country": "Austria",      "race_date": "2027-07-11", "sprint": false},
+    {"round": 12, "name": "Belgian Grand Prix",       "circuit_id": "spa",           "locality": "Spa-Francorchamps", "country": "Belgium",     "race_date": "2027-07-25", "sprint": false},
+    {"round": 13, "name": "Hungarian Grand Prix",     "circuit_id": "hungaroring",   "locality": "Budapest",         "country": "Hungary",      "race_date": "2027-08-01", "sprint": false},
+    {"round": 14, "name": "Italian Grand Prix",       "circuit_id": "monza",         "locality": "Monza",            "country": "Italy",        "race_date": "2027-09-05", "sprint": true},
+    {"round": 15, "name": "Spanish Grand Prix",       "circuit_id": "madring",       "locality": "Madrid",           "country": "Spain",        "race_date": "2027-09-12", "sprint": false},
+    {"round": 16, "name": "Azerbaijan Grand Prix",    "circuit_id": "baku",          "locality": "Baku",             "country": "Azerbaijan",   "race_date": "2027-09-26", "sprint": false},
+    {"round": 17, "name": "Turkish Grand Prix",       "circuit_id": "istanbul",      "locality": "Istanbul",         "country": "Turkey",       "race_date": "2027-10-03", "sprint": false},
+    {"round": 18, "name": "Singapore Grand Prix",     "circuit_id": "marina_bay",    "locality": "Marina Bay",       "country": "Singapore",    "race_date": "2027-10-10", "sprint": false},
+    {"round": 19, "name": "United States Grand Prix", "circuit_id": "americas",      "locality": "Austin",           "country": "USA",          "race_date": "2027-10-24", "sprint": false},
+    {"round": 20, "name": "Mexico City Grand Prix",   "circuit_id": "rodriguez",     "locality": "Mexico City",      "country": "Mexico",       "race_date": "2027-10-31", "sprint": false},
+    {"round": 21, "name": "São Paulo Grand Prix",     "circuit_id": "interlagos",    "locality": "São Paulo",        "country": "Brazil",       "race_date": "2027-11-07", "sprint": true},
+    {"round": 22, "name": "Las Vegas Grand Prix",     "circuit_id": "vegas",         "locality": "Las Vegas",        "country": "USA",          "race_date": "2027-11-20", "sprint": false},
+    {"round": 23, "name": "Qatar Grand Prix",         "circuit_id": "losail",        "locality": "Lusail",           "country": "Qatar",        "race_date": "2027-12-05", "sprint": true},
+    {"round": 24, "name": "Abu Dhabi Grand Prix",     "circuit_id": "yas_marina",    "locality": "Abu Dhabi",        "country": "UAE",          "race_date": "2027-12-12", "sprint": true}
+  ]
+}

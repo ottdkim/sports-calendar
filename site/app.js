@@ -1,4 +1,4 @@
-/* My Sports Calendar - all rendering happens here.
+/* Daehyeon's Sports Calendar - all rendering happens here.
  * Data comes from data/events.json and data/standings.json (built by scripts/build_data.py).
  * Every event time is stored in UTC and converted for display:
  *   - Ottawa time (HOME_TZ) everywhere on the page
@@ -22,7 +22,7 @@ const state = {
   nhlDivision: null,  // which NHL division is showing (starts on the one in config.json)
 };
 
-const F1_PAGE_SIZE = 5;   // rows per page in the F1 standings
+const F1_PAGE_SIZE = 11;   // rows per page in the F1 standings
 
 /* ---------- date helpers (dates are "YYYY-MM-DD" strings) ---------- */
 
@@ -288,7 +288,7 @@ function renderStandings() {
     $("nhl-division").textContent = `${state.nhlDivision} Division`;
     $("nhl-standings-label").textContent = nhl.as_of ? `As of ${dayLabel(nhl.as_of)}` : "";
     const body = teams.map((t) => `<tr class="${t.highlight ? "is-highlight" : ""}">
-      <td>${t.pos}</td><td>${esc(t.name)}</td><td class="num">${t.gp}</td>
+      <td>${t.pos}</td><td><span class="label-long">${esc(t.name)}</span><span class="label-short">${esc(t.short_name || t.name)}</span></td><td class="num">${t.gp}</td>
       <td class="num">${t.w}-${t.l}-${t.otl}</td><td class="num">${t.points}</td></tr>`).join("");
     $("nhl-table").innerHTML = `<thead><tr><th>Pos</th><th>Team</th><th class="num">GP</th><th class="num">W-L-OTL</th><th class="num">Pts</th></tr></thead><tbody>${body}</tbody>`;
   } else {
@@ -354,11 +354,10 @@ function bindEvents() {
   bindThemeToggle();
 }
 
-/* Light/dark toggle. Starts from the system setting; a click switches and remembers the choice. */
+/* Light/dark toggle. Starts in light mode; a click switches and remembers the choice. */
 function bindThemeToggle() {
   const btn = $("theme-toggle");
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
-  const current = () => document.documentElement.dataset.theme || (systemDark.matches ? "dark" : "light");
+  const current = () => document.documentElement.dataset.theme || "light";
   const paint = () => {
     const dark = current() === "dark";
     btn.textContent = dark ? "☀" : "☾";
@@ -371,7 +370,6 @@ function bindThemeToggle() {
     try { localStorage.setItem("theme", next); } catch (e) { /* storage blocked: still switches for this visit */ }
     paint();
   });
-  systemDark.addEventListener("change", paint);
   paint();
 }
 

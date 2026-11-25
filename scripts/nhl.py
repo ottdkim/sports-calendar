@@ -76,6 +76,7 @@ def team_row(r, my_team):
         "pos": r.get("divisionSequence"),
         "abbrev": abbrev,
         "name": r.get("teamName", {}).get("default", ""),
+        "short_name": r.get("teamCommonName", {}).get("default", ""),  # e.g. "Blue Jackets", used on narrow screens
         "gp": r.get("gamesPlayed", 0),
         "w": r.get("wins", 0),
         "l": r.get("losses", 0),
